@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet"> 
+
+
+	<script src=""></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Liste_en_JavaScript</title>
+</head>
+<body>
+
+	<div id="conteneur">
+
+	<div id="pageListe">
+		
+		<h1>Ma liste</h1>
+			<div id="zoneFormulaire">
+				
+
+				<label>Voici ce que je veux :
+					<input type="text" id="jeVeux" />
+				</label>
+
+
+
+				<button type="button"  id="btnAjoute"class="btn btn-outline-primary">Ajouter</button>
+				
+				<br/>
+				<br/>
+				<button type="button" id="btnAffiche">Afficher la liste</button>
+			</div>
+			<ul id="uListe"></ul>
+	</div>
+</div>
+
+
+
+	<script type="text/javascript">
+
+
+
+
+		// Auditeur d'événement pour le bouton Ajouter, déclenchant la fonction addTheThing
+// var vBtnAj = 
+
+var vBtnAj = document.getElementById("btnAjoute");
+vBtnAj.addEventListener("click",recupererDesir);
+
+
+
+// Auditeur d'événement pour le bouton Afficher, déclenchant la fonction printView
+// var vBtnAff = 
+
+
+var vBtnAff = document.getElementById("btnAffiche");
+vBtnAff.addEventListener("click", afficherListe);
+
+
+// Tableau vide nommé maListe
+
+
+
+
+var maListe = [];
+
+/* Variable maZoneListe ciblant l'élément avec id 'uListe'
+// var maZoneListe = */
+
+var maZoneListe = document.getElementById("uListe");
+
+
+/* Fonction recupererDesir() qui récupère le contenu du champ de saisie et le passe à la fonction insererDansListe(). Appelle ensuite viderChamp().*/
+
+function recupererDesir() {
+
+	var vDesir = document.getElementById("jeVeux");
+	insererDansListe(vDesir);
+	viderChamp(vDesir);
+
+}
+
+
+/* Fonction insererDansListe qu reçoit en paramètre nouvDesir.
+Insère la donnée dans le tableau maListe puis insère l'élément de liste dans maZoneListe.
+
+*/
+
+function insererDansListe(nouvDesir) {
+
+	maListe.push(nouvDesir.value);
+	var nouvEntree = document.createElement("li");
+	nouvEntree.innerHTML =  maListe[maListe.length -1];
+
+	maZoneListe.appendChild(nouvEntree);
+
+}
+
+
+
+
+
+/* Fonction viderChamp() qui efface ce qui a été saisi
+
+
+*/
+
+function viderChamp(idChamp) {
+
+	idChamp.value = "";
+
+}
+
+
+/* Fonction afficherListe() qui ajoute des styles et affiche la liste.*/
+
+
+function afficherListe(){
+
+	var vPL = document.getElementById("pageListe");
+	var vZF = document.getElementById("zoneFormulaire");
+
+
+	vZF.style.display = "none";
+	vPL.className = "classAff";
+	maZoneListe.innerHTML = "";
+	maListe.sort();
+
+	for (var i = 0; i < maListe.length; i++){
+
+		uListe.innerHTML += "<li>" + maListe[i] + "</li>";
+	}
+	window.print();
+}
+
+
+
+
+	</script>
+	
+
+
+
+
+
+
+
+</body>
+</html>
